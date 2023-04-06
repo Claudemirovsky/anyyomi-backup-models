@@ -64,13 +64,11 @@ class Parser(ABC):
             self.parseFile(entry)
 
         if not self._addInvalid:
-
             invalid = [
                 name for name, entries in self.defs.items() 
                     if any([entry.number == 0 for entry in entries])
             ]
                       
-
             for name in self.defs:
                 if name in invalid:
                     del self.defs[name]
@@ -101,8 +99,7 @@ class Parser(ABC):
                     )
                 )
 
-            matcher = re.compile(r"^\s*(?!\/\/\s*)@ProtoNumber", re.M)
-            if len(entries) != len(matcher.findall(foundDefs.group("defs"))):
+            if len(entries) != len(self.regex.findall(foundDefs["defs"])):
                 raise Exception(f"Not all @ProtoNumber matched in {foundDefs['name']}\n  matched: {', '.join(map(lambda x: x.name, entries))}")
             
             if len(entries) > 0:
