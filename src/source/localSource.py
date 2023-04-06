@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-from source import Source, SourceEntry
+from source.source import Source, SourceEntry
 
 @dataclass
 class FileEntry(SourceEntry):
