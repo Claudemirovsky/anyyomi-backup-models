@@ -10,7 +10,7 @@ class FileEntry(SourceEntry):
 class LocalSource(Source):
     def readDir(self) -> list[FileEntry]:
         dir: list[FileEntry] = []
-        for file in Path(self.config).iterdir():
+        for file in Path(self.config).rglob("*"):
             if file.is_file():
                 dir.append(
                     FileEntry(
