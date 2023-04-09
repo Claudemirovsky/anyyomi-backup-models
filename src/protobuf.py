@@ -5,6 +5,7 @@ class Protobuf(Generator):
     # kotlin type mapping
     types = {
         "String": "string",
+        "Char": "string",
         "Int": "int32",
         "Long": "int64",
         "Boolean": "bool",
@@ -24,7 +25,7 @@ class Protobuf(Generator):
                 fieldType = self.get_type(entry)
                 attribute = self.get_attribute(entry)
                 lines.extend([
-                    f"  // {entry.match.strip()}",
+                    f"  // {entry.match.strip()}".replace("\n", ""),
                     f"  {attribute} {fieldType} {entry.name} = {entry.number};"
                 ])
             
