@@ -69,7 +69,7 @@ class Parser(ABC):
                     if any([entry.number == 0 for entry in entries])
             ]
                       
-            for name in self.defs:
+            for name in list(self.defs):
                 if name in invalid:
                     del self.defs[name]
                 else:
